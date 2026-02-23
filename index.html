@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>我的愛車紀錄本</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f8f9fa; padding: 30px; }
+        .card { background: white; max-width: 500px; margin: auto; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #d32f2f; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #d32f2f; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #b71c1c; }
+        ul { list-style: none; padding: 0; margin-top: 20px; }
+        li { background: #eee; margin: 5px 0; padding: 10px; border-radius: 5px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🏍️ 騎行與保養紀錄</h1>
+        <input type="text" id="event" placeholder="例如：更換 KTM 機油、去大埔阿婆灣...">
+        <button onclick="addLog()">記錄下來</button>
+        <ul id="logList"></ul>
+    </div>
+
+    <script>
+        function addLog() {
+            const input = document.getElementById('event');
+            const list = document.getElementById('logList');
+            if (input.value === '') return;
+
+            const now = new Date();
+            const timeStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+            
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${timeStr}</strong> - ${input.value}`;
+            list.prepend(li); // 新紀錄放在最上面
+            input.value = ''; // 清空輸入框
+        }
+    </script>
+</body>
+</html>
